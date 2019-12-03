@@ -1,0 +1,10 @@
+---
+title: "Exporting Data"
+output: html_notebook
+---
+
+
+```{r}
+require(emuR)
+```
+

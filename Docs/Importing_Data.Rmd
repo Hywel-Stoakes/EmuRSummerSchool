@@ -1,0 +1,11 @@
+---
+title: "Importing Data"
+output: html_notebook
+---
+
+
+```{r}
+require(emuR)
+require(tidyverse)
+```
+
