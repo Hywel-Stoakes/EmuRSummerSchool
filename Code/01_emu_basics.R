@@ -17,23 +17,61 @@ path2ae = file.path("DATA", "emuR_demoData", "ae_emuDB")
 # load emuDB into current R session
 ae = load_emuDB(path2ae)
 serve(ae) # This command doesn't work Rstudio cloud - locally this will take a little time
-# query loaded emuDBh
-lvowels = query(ae, "Phonetic = i: | u: | o:")
 
 # extract labels from query result
 label <- function(x){
   x$labels
 }
 
-lvowels.labs = label(lvowels)
+require(tidyverse)
+# query A and V (front and back open vowels),
+# i:and u: (front and back closed vowels), and
+# E and o: (front and back mid vowels)
+ae_vowels = query(emuDBhandle = ae,
+                  query = "[Phonetic == V | A | i: | u: | o: | E]")
+#get the formants:
+ae_formants = get_trackdata(ae,
+                            seglist = ae_vowels,
+                            ssffTrackName = "fm",
+                            resultType = "tibble")
 
-# list all ssffTrackDefinitions of emuDB
-list_ssffTrackDefinitions(ae)
-summary(ae)
+# time normalize the formant values
+ae_formants_norm = normalize_length(ae_formants)
 
-# get formant trackdata defined in ssffTrackDefinitions "fm" for query result
-# extract track values at temporal midpoint of segments
-lvowels.fm = get_trackdata(ae, lvowels, "fm",cut = 0.5)
+# extract the temporal mid-points
+ae_midpoints = ae_formants_norm %>%
+  filter(times_norm == 0.5)
 
-# Plot the data
+# plot F1 & F2 values (== eplot(..., dopoints = T, doellipse = F, centroid = F, ...))
+ggplot(ae_midpoints) +
+  aes(x = T2, y = T1, label = labels, col = labels) +
+  geom_text() +
+  scale_y_reverse() + scale_x_reverse() +
+  labs(x = "F2 (Hz)", y = "F1 (Hz)") +
+  theme(legend.position = "none")
 
+# plot F1 & F2 values (== eplot(..., dopoints = T, doellipse = T, centroid = F, ...))
+ggplot(ae_midpoints) +
+  aes(x = T2, y = T1, label = labels, col = labels) +
+  geom_text() +
+  stat_ellipse() +
+  scale_y_reverse() + scale_x_reverse() +
+  labs(x = "F2 (Hz)", y = "F1 (Hz)") +
+  theme(legend.position = "none")
+
+# filter out vowels with enough data points
+# to calc. ellipse
+ae_midpoints_Eiu = ae_midpoints %>% filter(labels%in%c("E","i:","u:"))
+
+ae_centroid = ae_midpoints_Eiu %>%
+  group_by(labels) %>%
+  summarise(T1 = mean(T1), T2 = mean(T2))
+
+# plot F1 & F2 values (== eplot(..., dopoints = T, doellipse = T, centroid = T, ...))
+ggplot(ae_midpoints_Eiu) +
+  aes(x = T2, y = T1, label = labels, col = labels) +
+  stat_ellipse() +
+  scale_y_reverse() + scale_x_reverse() +
+  labs(x = "F2 (Hz)", y = "F1 (Hz)") +
+  theme(legend.position = "none") +
+  geom_text(data = ae_centroid)
