@@ -6,27 +6,33 @@ require(emuR)
 ## Not run:
 # create demo data including an emuDB called "ae"
 # for a local project change the path (each folder inside its own parentheses)
-create_emuRdemoData(dir = file.path("DATA"))
+# create_emuRdemoData(dir = file.path("/","cloud","project","DATA")) # on RStudio Cloud
+create_emuRdemoData(dir = file.path("DATA"))                         # Local project
 
-# construct path to demo emuDB
-# On Rstudio Cloud
-# path2ae = file.path("/cloud/project/DATA", "emuR_demoData", "ae_emuDB")
-# Local (From Github)
-path2ae = file.path("DATA", "emuR_demoData", "ae_emuDB")
+#### construct path to demo emuDB ###
 
-# load emuDB into current R session
+# path2ae = file.path("/cloud/project/DATA", "emuR_demoData", "ae_emuDB") # On Rstudio Cloud
+path2ae = file.path("DATA", "emuR_demoData", "ae_emuDB") # Local (From Github)
+
+#### load emuDB into current R session ####
 ae = load_emuDB(path2ae)
 serve(ae) # This command doesn't work Rstudio cloud - locally this will take a little time
 
-# extract labels from query result
-label <- function(x){
+#### A couple of useful functions ####
+seg_label <- function(x){
   x$labels
 }
 
+seg_dur <- function(x){
+  x$end - x$start
+}
+
+#### An example to plot vowels in two-dimensions ####
 require(tidyverse)
 # query A and V (front and back open vowels),
 # i:and u: (front and back closed vowels), and
 # E and o: (front and back mid vowels)
+# Labels are in machine readable ASCII (could be IPA or any other Unicode symbol)
 ae_vowels = query(emuDBhandle = ae,
                   query = "[Phonetic == V | A | i: | u: | o: | E]")
 #get the formants:
