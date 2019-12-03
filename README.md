@@ -6,11 +6,11 @@ Here are the support files for the EmuR Workshop at the CoEDL Summer School 2019
 This is a gentle introduction to Emu R and using R studio for speech science and phonetics. This document will help you install R, Rstudio and EmuR which are pre-requisites for 
 
 ## Installation
-I you don't have R and R studio installed, please follow the steps described in this document (and see the wiki for further info).
+If you don't have R and R studio installed, please follow the steps described in this document (and see the wiki for further info).
 
 ### Installing R
 1. The first step is to install R from this url: https://cran.ms.unimelb.edu.au
-2. Download the corrent binary for your platform:
+2. Download the correct binary for your platform:
 3. Follow the installation instructions (Install RTools if you are on Windows)
 
 ### Installing R Studio
