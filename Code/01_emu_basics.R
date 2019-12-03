@@ -35,7 +35,8 @@ require(tidyverse)
 # Labels are in machine readable ASCII (could be IPA or any other Unicode symbol)
 ae_vowels = query(emuDBhandle = ae,
                   query = "[Phonetic == V | A | i: | u: | o: | E]")
-#get the formants:
+
+# get the formants:
 ae_formants = get_trackdata(ae,
                             seglist = ae_vowels,
                             ssffTrackName = "fm",
@@ -66,6 +67,7 @@ ggplot(ae_midpoints) +
   theme(legend.position = "none")
 
 # filter out vowels with enough data points
+# the %>% operator comes from the magrittr package “Ceci n’est pas une pipe”
 # to calc. ellipse
 ae_midpoints_Eiu = ae_midpoints %>% filter(labels%in%c("E","i:","u:"))
 
