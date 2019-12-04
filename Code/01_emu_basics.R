@@ -2,12 +2,14 @@
 # All materials are available at: https://github.com/Hywel-Stoakes/EmuRSummerSchool
 # An Important resource is the Emu Manual https://ips-lmu.github.io/The-EMU-SDMS-Manual/ by Raphael Winkelmann
 #### Introduction ####
+library(emuR)
 require(emuR)
+
 ## Not run:
 # create demo data including an emuDB called "ae"
 # for a local project change the path (each folder inside its own parentheses)
 # create_emuRdemoData(dir = file.path("/","cloud","project","DATA")) # on RStudio Cloud
-create_emuRdemoData(dir = file.path("DATA"))                         # Local project
+create_emuRdemoData(dir = file.path("DATA"))                      # Local project
 
 #### construct path to demo emuDB ###
 
@@ -15,7 +17,7 @@ create_emuRdemoData(dir = file.path("DATA"))                         # Local pro
 path2ae = file.path("DATA", "emuR_demoData", "ae_emuDB") # Local (From Github)
 
 #### load emuDB into current R session ####
-ae = load_emuDB(path2ae)
+ae <- load_emuDB(path2ae)
 serve(ae) # This command doesn't work Rstudio cloud - locally this will take a little time
 
 #### A couple of useful functions ####
@@ -28,19 +30,20 @@ seg_dur <- function(x){
 }
 
 #### An example to plot vowels in two-dimensions ####
+library(tidyverse)
 require(tidyverse)
 # query A and V (front and back open vowels),
 # i:and u: (front and back closed vowels), and
 # E and o: (front and back mid vowels)
 # Labels are in machine readable ASCII (could be IPA or any other Unicode symbol)
-ae_vowels = query(emuDBhandle = ae,
+ae_vowels <- query(emuDBhandle = ae,
                   query = "[Phonetic == V | A | i: | u: | o: | E]")
-
+seg_dur(ae_vowels)
 # get the formants:
 ae_formants = get_trackdata(ae,
                             seglist = ae_vowels,
-                            ssffTrackName = "fm",
-                            resultType = "tibble")
+                            ssffTrackName = "fm")
+
 
 # time normalize the formant values
 ae_formants_norm = normalize_length(ae_formants)
@@ -50,6 +53,7 @@ ae_midpoints = ae_formants_norm %>%
   filter(times_norm == 0.5)
 
 # plot F1 & F2 values (== eplot(..., dopoints = T, doellipse = F, centroid = F, ...))
+library(ggplot2)
 ggplot(ae_midpoints) +
   aes(x = T2, y = T1, label = labels, col = labels) +
   geom_text() +
@@ -69,7 +73,8 @@ ggplot(ae_midpoints) +
 # filter out vowels with enough data points
 # the %>% operator comes from the magrittr package “Ceci n’est pas une pipe”
 # to calc. ellipse
-ae_midpoints_Eiu = ae_midpoints %>% filter(labels%in%c("E","i:","u:"))
+ae_midpoints_Eiu = ae_midpoints %>%
+  filter(labels%in%c("E","i:","u:"))
 
 ae_centroid = ae_midpoints_Eiu %>%
   group_by(labels) %>%

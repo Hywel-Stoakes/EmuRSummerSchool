@@ -45,7 +45,7 @@ This tutorial will start by converting a TextGrid collection containing seven an
 
 ```{r results='show', message=FALSE}
 # create path to TextGrid collection
-tg_col_dir = file.path(demo_data_dir, "TextGrid_collection")
+tg_col_dir = file.path("/Users/hywel/Dropbox (Personal)/Teaching/Workshops/EmuRSummerSchool/DATA/emuR_demoData", "TextGrid_collection")
 # show content of TextGrid_collection directory
 list.files(tg_col_dir)
 ```
@@ -65,7 +65,7 @@ The `convert_TextGridCollection()` function converts a TextGrid collection to th
 # convert TextGrid collection to the emuDB format
 convert_TextGridCollection(dir = tg_col_dir,
                            dbName = "my-first",
-                           targetDir = tempdir(),
+                           targetDir = "/Users/hywel/Dropbox (Personal)/Teaching/Workshops/EmuRSummerSchool/DATA/my-first",
                            tierNames = c("Word", "Syllable",
                                          "Phoneme", "Phonetic"))
 ```
