@@ -42,6 +42,6 @@ Please open the `Code` folder and goto `01_emu_basics.R` and then to `02_emu_fur
 Once you have worked through those files then you can take a look at the import and export instructions in the `Docs` folder. All of these files will open in RStudio
 
 For further information see the [Emu SDMS Manual by Raphael Winkelmann:
-https://ips-lmu.github.io/The-EMU-SDMS-Manual/}(https://ips-lmu.github.io/The-EMU-SDMS-Manual/)
+https://ips-lmu.github.io/The-EMU-SDMS-Manual/](https://ips-lmu.github.io/The-EMU-SDMS-Manual/)
 
 Please email me if you have any questions: hstoakes at unimelb dot edu.au or h.stoakes at auckland dot ac.nz
