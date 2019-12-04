@@ -29,11 +29,14 @@ If you don't already have EmuR Installed you can install it using:
 # install.packages('devtools')
 install.packages('tidyverse') # Required for emu
 install.packages('emuR')
+```
 
+```{r}
 # If we want the development version of emuR we can use the following code:
 # library(devtools)
 # install_github("IPS-LMU/emuR")
 ```
+
 Please open the `Code` folder and goto `01_emu_basics.R` and then to `02_emu_further_plotting.R`.
 
 Once you have worked through those files then you can take a look at the import and export instructions in the `Docs` folder. All of these files will open in RStudio
