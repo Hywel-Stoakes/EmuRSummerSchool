@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Welcome to the CoEDL Summer School
 Here are the support files for the EmuR Workshop at the CoEDL Summer School 2019
 
@@ -21,7 +26,7 @@ https://rstudio.com/products/rstudio/download/#download
 If you don't already have EmuR Installed you can install it using:
 
 ```{r installation_emu}
-install.packages('devtools')
+# install.packages('devtools')
 install.packages('tidyverse') # Required for emu
 install.packages('emuR')
 
@@ -29,4 +34,5 @@ install.packages('emuR')
 # library(devtools)
 # install_github("IPS-LMU/emuR")
 ```
+Please open the Code folder and goto 01_emu_basics.R
 Please email me if you have any questions: hstoakes at unimelb dot edu.au or h.stoakes at auckland dot ac.nz
