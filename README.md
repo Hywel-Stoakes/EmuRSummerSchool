@@ -8,7 +8,7 @@ Here are the support files for the EmuR Workshop at the CoEDL Summer School 2019
 
 ## The Emu R course
 
-This is a gentle introduction to Emu R and using R studio for speech science and phonetics. This document will help you install R, Rstudio and EmuR which are pre-requisites for 
+This is a gentle introduction to Emu R and using R studio for speech science and phonetics. This document will help you install R, Rstudio and EmuR which are pre-requisites for this course.
 
 ## Installation
 If you don't have R and R studio installed, please follow the steps described in this document (and see the wiki for further info).
@@ -44,4 +44,7 @@ Once you have worked through those files then you can take a look at the import 
 For further information see the [Emu SDMS Manual by Raphael Winkelmann:
 https://ips-lmu.github.io/The-EMU-SDMS-Manual/](https://ips-lmu.github.io/The-EMU-SDMS-Manual/)
 
-Please email me if you have any questions: hstoakes at unimelb dot edu.au or h.stoakes at auckland dot ac.nz
+A great general resource for using R for Data Science is *R for Data Science* by Garrett Grolemund and Hadley Wickham
+(read online at: [https://r4ds.had.co.nz](https://r4ds.had.co.nz))
+
+Please contact me if you have any questions: hstoakes at unimelb dot edu.au
