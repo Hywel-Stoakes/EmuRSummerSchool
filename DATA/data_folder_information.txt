@@ -1,0 +1,1 @@
+This folder is currently empty apart from this file and will be where the demo data will be created.
