@@ -39,7 +39,9 @@ install.packages('emuR')
 
 Please open the `Code` folder and goto `01_emu_basics.R` and then to `02_emu_further_plotting.R`.
 
-Once you have worked through those files then you can take a look at the import and export instructions in the `Docs` folder. All of these files will open in RStudio
+Once you have worked through those files then you can take a look at the import and export instructions in the `Docs` folder. All of these files will open in RStudio.
+
+For further information and guides on how to add formants and fundamental frequency information, take a look at the Wiki (https://github.com/Hywel-Stoakes/EmuRSummerSchool/wiki)
 
 For further information see the [Emu SDMS Manual by Raphael Winkelmann:
 https://ips-lmu.github.io/The-EMU-SDMS-Manual/](https://ips-lmu.github.io/The-EMU-SDMS-Manual/)
